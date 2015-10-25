@@ -34,12 +34,11 @@ function getTweets(client, keywords, callback, forceReport) {
 }
 
 function getPersistedList() {
-  var stat = fs.statSync(filename);
-  if(stat.isFile()) {
+  try {
     var data = fs.readFileSync(filename);
     data = JSON.parse(data);
     alreadyRead = data;
-  }
+  } catch(e) {}
 }
 
 function persistList(data) {
